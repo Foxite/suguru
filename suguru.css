@@ -13,8 +13,8 @@ table tr td:first-of-type {
 
 td {
 	font-size: 3em;
-	width: 100px;
-	height: 100px;
+	width: 75px;
+	height: 75px;
 	box-sizing: border-box;
 	border: 1px solid dimgrey;
 	text-align: center;
