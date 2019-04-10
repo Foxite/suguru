@@ -1,0 +1,30 @@
+The diff*.js files are taken directly from Suguru.apk, which conveniently runs a WebView shell with the entire game in HTML, JS and CSS.
+They contain an array with a string that encodes the level.
+This is the string explanation, reverse engineered:
+The first entry in diff1.js: 451112341223415264152203040040001005035062
+
+The first 2 characters are width and height:
+45
+4x5 puzzle.
+
+In between that and the next section is which cells (per column) is which block:
+11123412234152641522
+
+the puzzle blocks:
+1444
+1111
+1255
+2222
+3362
+
+
+The last =(WxH) characters are the puzzle columns:
+03040040001005035062
+
+the puzzle:
+0013
+3405
+0000
+4056
+0002
+0 characters represent hidden values.
