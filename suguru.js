@@ -18,7 +18,7 @@ function nextLevel() {
 }
 
 function loadLevel(levelReference) {
-	var level = allLevels[levelReference.diff][levelReference.level];
+	var level = allLevels[levelReference.diff - 1][levelReference.level];
 	
 	var xSize = parseInt(level[0]);
 	var ySize = parseInt(level[1]);
