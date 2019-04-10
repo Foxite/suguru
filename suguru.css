@@ -1,16 +1,6 @@
 table {
 	border-spacing: 0;
-	border: 1px solid dimgrey;
-}
-
-td {
-	width: 25px;
-	height: 25px;
-	border-left: 1px solid dimgrey;
-	border-top: 1px solid dimgrey;
-	border-right: none;
-	border-bottom: none;
-	padding: 4px;
+	border: 2px solid black;
 }
 
 table tr:first-of-type td {
@@ -21,18 +11,28 @@ table tr td:first-of-type {
 	border-left: none;
 }
 
+td {
+	font-size: 3em;
+	width: 100px;
+	height: 100px;
+	box-sizing: border-box;
+	border: 1px solid dimgrey;
+	text-align: center;
+	border-style: outset;
+}
+
 .border-left {
-	border-left: 1px solid black;
+	border-left: 2px solid black;
 }
 
 .border-top {
-	border-top: 1px solid black;
+	border-top: 2px solid black;
 }
 
 .border-right {
-	border-right: 1px solid black;
+	border-right: 2px solid black;
 }
 
 .border-bottom {
-	border-bottom: 1px solid black;
+	border-bottom: 2px solid black;
 }
