@@ -157,7 +157,7 @@ function validateCell(cell) {
 			}
 		}
 	}
-	
+
 	if (value <= cellsInBlock) {
 		cell.classList.remove("invalid");
 
