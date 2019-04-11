@@ -8,20 +8,29 @@
 	<script type="text/javascript" src="diff4.js"></script>
 	<script type="text/javascript" src="diff5.js"></script>
 	<script type="text/javascript" src="diff6.js"></script>
+	<script type="text/javascript" src="common.js"></script>
 	<script type="text/javascript" src="suguru.js"></script>
+	<script type="text/javascript" src="algorithm.js"></script>
 	<link rel="stylesheet" href="suguru.css" />
 </head>
-<body onload="resetLevel()">
+<body onload="onLoad(); resetLevel();">
 <div id="container">
 	<form id="generateForm">
-		<label>Difficulty: <input type="number" id="difficulty" value="1" style="width: 33px;" min="1" max="6" /></label>
+		<label>Difficulty: <select id="difficulty">
+			<option value="1">Beginner</option>
+			<option value="2">Easy</option>
+			<option value="3">Medium</option>
+			<option value="4">Hard</option>
+			<option value="5">Very hard</option>
+			<option value="6">Bruh</option>
+		</select></label>
 		<button type="button" onclick="resetLevel()">Reset</button>
 		<button type="button" onclick="nextLevel()">Next Level</button>
+		<button type="button" onclick="solve()">Auto solve</button>
 	</form>
+	<div id="wintext" style="visibility:hidden;">Puzzle solved!</div>
 	<p></p>
-	<table id="suguru">
-		
-	</table>
+	<table id="suguru"></table>
 </div>
 </body>
 </html>

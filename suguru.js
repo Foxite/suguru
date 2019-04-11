@@ -1,7 +1,6 @@
 var currentLevel = { "diff": 1, "level": 1, "xSize": 0, "ySize": 0, "blocks": "", "digits": "" };
 
 var allLevels = [ levels1, levels2, levels3, levels4, levels5, levels6 ];
-var table = null;
 
 function resetLevel() {
 	loadLevel(currentLevel)
@@ -19,6 +18,8 @@ function nextLevel() {
 }
 
 function loadLevel(levelReference) {
+	document.getElementById("wintext").style.visibility = "hidden";
+
 	var level = allLevels[levelReference.diff - 1][levelReference.level - 1];
 	
 	levelReference.xSize = parseInt(level[0]);
@@ -27,7 +28,6 @@ function loadLevel(levelReference) {
 	levelReference.blocks = level.substring(2, 2 + area)
 	levelReference.digits = level.substring(2 + area, level.length);
 	
-	table = document.getElementById("suguru");
 	clearElement(table);
 	
 	var xSize = levelReference.xSize;
@@ -143,7 +143,7 @@ function validateCell(cell) {
 			var checkCell = getCell(searchX, searchY);
 			checkCell.classList.remove("invalid");
 
-			if (checkCell.innerHTML == "0") {
+			if (checkCell.innerHTML == "") {
 				won = false;
 			}
 
@@ -163,6 +163,7 @@ function validateCell(cell) {
 
 		if (won) {
 			console.log("Won");
+			document.getElementById("wintext").style.visibility = null;
 		}
 
 		return true;
@@ -170,8 +171,4 @@ function validateCell(cell) {
 		cell.classList.add("invalid");
 		return false;
 	}
-}
-
-function getCell(x, y) {
-	return table.firstChild.childNodes[y].childNodes[x];
 }
