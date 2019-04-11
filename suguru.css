@@ -7,8 +7,16 @@ table tr:first-of-type td {
 	border-top: none;
 }
 
+table tr:last-of-type td {
+	border-bottom: none;
+}
+
 table tr td:first-of-type {
 	border-left: none;
+}
+
+table tr td:last-of-type {
+	border-right: none;
 }
 
 td {
@@ -16,7 +24,7 @@ td {
 	width: 75px;
 	height: 75px;
 	box-sizing: border-box;
-	border: 1px solid dimgrey;
+	border: 1px solid lightgrey;
 	text-align: center;
 	border-style: outset;
 }
@@ -35,4 +43,9 @@ td {
 
 .border-bottom {
 	border-bottom: 2px solid black;
+}
+
+.invalid {
+	outline: 3px dashed red;
+	outline-offset: -3px;
 }
