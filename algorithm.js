@@ -224,9 +224,6 @@ function analyze() {
 				excludeValue(cell, blockValuesPresent[block][i]);
 			}
 			
-			if (x == 0 && y == 1) {
-				console.log("diagnosis");
-			}
 			// Technique 3: Cells that can not have a digit because if it did, an adjacent block could not have that digit
 			// What we need to ask: Does cell border all cells in a certain block that can hold a certain digit? If so, cell cannot have that digit.
 			var exclusions = {}; // For each neighboring block, an array of digits that all neighbors in that block can hold
