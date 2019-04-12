@@ -16,7 +16,7 @@
 </head>
 <body onload="onLoad(); resetLevel();">
 <div id="container">
-	<form id="generateForm">
+	<form id="generateForm" onsubmit="loadLevelUI(); return false;">
 		<label>Difficulty: <select id="difficulty">
 			<option value="1">Beginner</option>
 			<option value="2">Easy</option>
@@ -26,12 +26,12 @@
 			<option value="6">Bruh</option>
 		</select></label>
 		<label>Level: <input type="number" id="levelNumber" min="1" max="1000" style="width: 5em" value="1"></label>
-		<button type="button" id="loadButton" onclick="loadLevelUI()">Load Level</button><br>
-		<button type="button" id="resetButton" onclick="resetLevel()">Reset</button>
-		<button type="button" id="nextButton" onclick="nextLevel()">Next Level</button>
-		<button type="button" id="autoButton" onclick="solve()">Auto solve</button>
-		<button type="button" id="stopButton" onclick="stop()" disabled>Cancel auto solve</button>
+		<button type="submit" id="loadButton">Load Level</button><br>
 	</form>
+	<button type="button" id="resetButton" onclick="resetLevel()">Reset</button>
+	<button type="button" id="nextButton" onclick="nextLevel()">Next Level</button>
+	<button type="button" id="autoButton" onclick="solve()">Auto solve</button>
+	<button type="button" id="stopButton" onclick="stop()" disabled>Cancel auto solve</button>
 	<div id="wintext" style="visibility:hidden;">Puzzle solved!</div>
 	<p></p>
 	<table id="suguru"></table>

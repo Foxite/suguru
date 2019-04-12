@@ -6,15 +6,31 @@ var blockSizes = null;
 var nothingChanged = false;
 
 function excludeValue(cell, value) {
+	if (cell.textContent != "") {
+		return;
+	}
+
 	var possibleValues = cell.getAttribute("data-possiblevalues");
 	possibleValues = possibleValues.replace(value, "");
 	cell.setAttribute("data-possiblevalues", possibleValues);
+
+	if (possibleValues.length == 1) {
+		setCell(cell, possibleValues);
+	} else if (possibleValues.length == 0) {
+		// Shouldn't happen
+		throw new Error("Cell at " + cell.getAttribute("data-x") + ", " + cell.getAttribute("data-y") + " has no possible values");
+	}
 }
 
 function setCell(cell, value) {
 	cell.innerHTML = value;
 	var block = cell.getAttribute("data-block");
 	blockValuesPresent[block] += value;
+	
+	for (var i = 0; i < blockIndex[block].length; i++) {
+		excludeValue(blockIndex[block][i], value);
+	}
+
 	nothingChanged = false;
 }
 
@@ -56,10 +72,11 @@ function weakIncludes(arr, value) {
 // https://stackoverflow.com/a/1584377/3141917
 function arrayUnique(array) {
     var a = array.concat();
-    for(var i=0; i<a.length; ++i) {
-        for(var j=i+1; j<a.length; ++j) {
-            if(a[i] === a[j])
-                a.splice(j--, 1);
+    for (var i = 0; i < a.length; i++) {
+        for (var j = i + 1; j < a.length; j++) {
+            if (a[i] === a[j]) {
+				a.splice(j--, 1);
+			}
         }
     }
 
@@ -109,13 +126,14 @@ function solve() {
 			}
 		}
 	}
+
+	// Setup part 3: fill in possiblevalues based on block index
 	for (var x = 0; x < currentLevel.xSize; x++) {
 		for (var y = 0; y < currentLevel.ySize; y++) {
 			var cell = getCell(x, y);
 			var block = cell.getAttribute("data-block");
 
 			if (cell.textContent == "") {
-				// Setup part 3: fill in possiblevalues based on block index
 				for (var i = 0; i < blockValuesPresent[block].length; i++) {
 					excludeValue(cell, blockValuesPresent[block][i]);
 				}
@@ -127,7 +145,6 @@ function solve() {
 			nothingChanged = true;
 
 			analyze();
-			excludeSingles();
 
 			if (nothingChanged) {
 				console.log("Unable to solve");
@@ -151,7 +168,7 @@ function solve() {
 				setTimeout(function() {
 					nextLevel();
 					solve();
-				}, 2000);
+				}, 200);
 			}
 		} catch (e) {
 			console.log("Error occured, stopping loop");
@@ -288,24 +305,6 @@ function analyze() {
 					if (possibleValues[i] != digit) {
 						excludeValue(cellsThatCanHoldDigit[0], possibleValues[i]);
 					}
-				}
-			}
-		}
-	}
-}
-
-function excludeSingles() {
-	// Go through cells and find cells that have been determined to only be able to hold a single digit, and fill in those cells
-	for (var x = 0; x < currentLevel.xSize; x++) {
-		for (var y = 0; y < currentLevel.ySize; y++) {
-			var cell = getCell(x, y);
-			if (cell.textContent == "") {
-				var possibleValues = cell.getAttribute("data-possiblevalues");
-				if (possibleValues.length == 1) {
-					setCell(cell, possibleValues);
-				} else if (possibleValues.length == 0) {
-					// Shouldn't happen
-					throw "Cell at " + x + ", " + y + " has no possible values";
 				}
 			}
 		}
