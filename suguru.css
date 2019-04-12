@@ -1,6 +1,11 @@
+body {
+	background-color: rgb(25, 25, 25);
+	color: rgba(255, 255, 255, 1)
+}
+
 table {
 	border-spacing: 0;
-	border: 2px solid black;
+	border: 2px solid rgba(255, 255, 255, 0.75);
 }
 
 table tr:first-of-type td {
@@ -24,25 +29,25 @@ td {
 	width: 75px;
 	height: 75px;
 	box-sizing: border-box;
-	border: 1px solid lightgrey;
+	border: 1px solid rgba(191, 191, 191, 0.75);
 	text-align: center;
 	border-style: outset;
 }
 
 .border-left {
-	border-left: 2px solid black;
+	border-left: 2px solid rgba(255, 255, 255, 0.9);
 }
 
 .border-top {
-	border-top: 2px solid black;
+	border-top: 2px solid rgba(255, 255, 255, 0.9);
 }
 
 .border-right {
-	border-right: 2px solid black;
+	border-right: 2px solid rgba(255, 255, 255, 0.9);
 }
 
 .border-bottom {
-	border-bottom: 2px solid black;
+	border-bottom: 2px solid rgba(255, 255, 255, 0.9);
 }
 
 .invalid {

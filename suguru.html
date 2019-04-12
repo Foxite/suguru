@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Suguru</title>
+	<meta charset="UTF-8">
 	<script type="text/javascript" src="diff1.js"></script>
 	<script type="text/javascript" src="diff2.js"></script>
 	<script type="text/javascript" src="diff3.js"></script>
@@ -24,9 +25,12 @@
 			<option value="5">Very hard</option>
 			<option value="6">Bruh</option>
 		</select></label>
-		<button type="button" onclick="resetLevel()">Reset</button>
-		<button type="button" onclick="nextLevel()">Next Level</button>
-		<button type="button" onclick="solve()">Auto solve</button>
+		<label>Level: <input type="number" id="levelNumber" min="1" max="1000" style="width: 5em" value="1"></label>
+		<button type="button" id="loadButton" onclick="loadLevelUI()">Load Level</button><br>
+		<button type="button" id="resetButton" onclick="resetLevel()">Reset</button>
+		<button type="button" id="nextButton" onclick="nextLevel()">Next Level</button>
+		<button type="button" id="autoButton" onclick="solve()">Auto solve</button>
+		<button type="button" id="stopButton" onclick="stop()" disabled>Cancel auto solve</button>
 	</form>
 	<div id="wintext" style="visibility:hidden;">Puzzle solved!</div>
 	<p></p>

@@ -1,23 +1,26 @@
-var currentLevel = { "diff": 1, "level": 1, "xSize": 0, "ySize": 0, "blocks": "", "digits": "" };
-
-var allLevels = [ levels1, levels2, levels3, levels4, levels5, levels6 ];
-
 function resetLevel() {
-	loadLevel(currentLevel)
+	loadLevelReference(currentLevel)
 }
 
 function nextLevel() {
-	var difficulty = document.getElementById("difficulty").value;
-	if (currentLevel.diff == difficulty) {
-		currentLevel.level++;
-	} else {
-		currentLevel.diff = difficulty;
-		currentLevel.level = 1;
-	}
-	loadLevel(currentLevel);
+	var numberInput = document.getElementById("levelNumber");
+	numberInput.value++;
+	var levelNumber = numberInput.value;
+
+	loadLevel(document.getElementById("difficulty").value, levelNumber);
 }
 
-function loadLevel(levelReference) {
+function loadLevelUI() {
+	loadLevel(document.getElementById("difficulty").value, document.getElementById("levelNumber").value);
+}
+
+function loadLevel(diff, number) {
+	currentLevel.diff = diff;
+	currentLevel.level = number;
+	loadLevelReference(currentLevel);
+}
+
+function loadLevelReference(levelReference) {
 	document.getElementById("wintext").style.visibility = "hidden";
 
 	var level = allLevels[levelReference.diff - 1][levelReference.level - 1];
@@ -82,7 +85,7 @@ function clearElement(element) {
 function onCellKeyDown(event) {
 	event.preventDefault();
 	if (!event.repeat) {
-		if (event.key >= 1 && event.key <= 6) {
+		if (event.key >= 1 && event.key <= 9) {
 			event.currentTarget.innerHTML = event.key;
 		} else if (event.key == "Backspace" || event.key == "Delete" || event.key == " " || event.key == "0") {
 			event.currentTarget.innerHTML = "";
