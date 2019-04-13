@@ -89,12 +89,17 @@ function arrayUnique(array) {
 }
 
 // Algorithm
-function solve() {
+function solve(stepDelay, levelDelay) {
 	var disable = ["resetButton", "loadButton", "nextButton", "autoButton"];
 	for (var i = 0; i < disable.length; i++) {
 		document.getElementById(disable[i]).disabled = true;
 	}
 	document.getElementById("stopButton").disabled = false;
+
+	var displayNone = [ "wintext", "autofail", "autosolved", "autoerror" ];
+	for (var i = 0; i < displayNone.length; i++) {
+		document.getElementById(displayNone[i]).style.display = "none";
+	}
 
 	blockValuesPresent = {};
 	blockSizes = {};
@@ -151,11 +156,6 @@ function solve() {
 
 			analyze();
 
-			if (nothingChanged) {
-				console.log("Unable to solve");
-				stop();
-			}
-
 			var solved = true;
 			solvedCheck:
 			for (var x = 0; x < currentLevel.xSize; x++) {
@@ -168,19 +168,26 @@ function solve() {
 			}
 
 			if (solved) {
-				console.log("Auto solve complete");
+				document.getElementById("autosolved").style.display = null;
 				stop();
-				/*setTimeout(function() {
-					nextLevel();
-					solve();
-				}, 2000);*/
+				
+				if (levelDelay != -1) {
+					setTimeout(function() {
+						nextLevel();
+						solve();
+					}, levelDelay);
+				}
+			} else if (nothingChanged) {
+				document.getElementById("autofail").style.display = null;
+				stop();
 			}
 		} catch (e) {
-			console.log("Error occured, stopping loop");
+			document.getElementById("autofail").style.display = null;
+			document.getElementById("autoerror").style.display = null;
 			stop();
 			throw e;
 		}
-	}, 500);
+	}, stepDelay);
 }
 
 // Techniques:

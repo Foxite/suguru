@@ -21,7 +21,10 @@ function loadLevel(diff, number) {
 }
 
 function loadLevelReference(levelReference) {
-	document.getElementById("wintext").style.visibility = "hidden";
+	var displayNone = [ "autofail", "autosolved", "autoerror", "wintext" ];
+	for (var i = 0; i < displayNone.length; i++) {
+		document.getElementById(displayNone[i]).style.display = "none";
+	}
 
 	var level = allLevels[levelReference.diff - 1][levelReference.level - 1];
 	
@@ -166,7 +169,7 @@ function validateCell(cell) {
 
 		if (won) {
 			console.log("Won");
-			document.getElementById("wintext").style.visibility = null;
+			document.getElementById("wintext").style.display = null;
 		}
 
 		return true;

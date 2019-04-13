@@ -21,30 +21,37 @@
 	<table id="controls"><tbody>
 		<tr>
 			<td style="display:flex;justify-content:space-between;">
-				<form id="generateForm" onsubmit="loadLevelUI(); return false;">
-					<label>Difficulty: <select id="difficulty">
+				<form id="levelForm" onsubmit="loadLevelUI(); return false;">
+					Select: <select id="difficulty">
 						<option value="1">Beginner</option>
 						<option value="2">Easy</option>
 						<option value="3">Medium</option>
 						<option value="4">Hard</option>
 						<option value="5">Very hard</option>
 						<option value="6">Bruh</option>
-					</select></label>
-					<label>Level: <input type="number" id="levelNumber" min="1" max="1000" style="width: 5em" value="1"></label>
-					<button type="submit" id="loadButton">Load Level</button>
+					</select>
+					<input type="number" id="levelNumber" min="1" max="1000" style="width: 5.1em" value="1">
+					<button type="submit" id="loadButton">Load level</button>
+					<button type="button" id="resetButton" onclick="resetLevel()">Reset level</button>
+					<button type="button" id="nextButton" onclick="nextLevel()">Next level</button>
 				</form>
 			</td>
 			<td><label><input type="radio" name="theme" value="light" onchange="switchTheme(this)" selected> Light</label></td>
 		</tr>
 		<tr><td style="display:flex;justify-content:space-between;">
-			<button type="button" id="resetButton" onclick="resetLevel()">Reset</button>
-			<button type="button" id="nextButton" onclick="nextLevel()">Next Level</button>
-			<button type="button" id="autoButton" onclick="solve()">Auto solve</button>
-			<button type="button" id="stopButton" onclick="stop()" disabled>Cancel auto solve</button>
+			<button type="button" id="autoButton" onclick="solve(500, -1)">Auto Solve Level</button>
+			<button type="button" id="autoAllButton" onclick="solve(500, 2000)">Auto Solve All</button>
+			<button type="button" id="rapidAutoButton" onclick="solve(100, 100)">Rapid Auto Solve</button>
+			<button type="button" id="stopButton" onclick="stop()" disabled>Cancel Auto Solve</button>
 		</td><td>
 			<label><input type="radio" name="theme" value="dark" onchange="switchTheme(this)"> Dark</label>
 		</td></tr>
-		<tr><td><div id="wintext" style="visibility:hidden;">Puzzle solved!</div></td></tr>
+		<tr><td>
+			<span id="wintext" style="display:none;">Puzzle solved!</span>
+			<span id="autofail" style="display:none;">Unable to Auto Solve<span id="autoerror" style="display:none;">: error occured</span></span>
+			<span id="autosolved" style="display:none;">Auto Solve complete</span>
+			&nbsp;
+		</td></tr>
 	</tbody></table>
 	<p></p>
 	<table id="suguru"></table>
