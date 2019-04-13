@@ -4,6 +4,8 @@ var blockIndex = null;
 var blockValuesPresent = null;
 var blockSizes = null;
 var nothingChanged = false;
+var next = null;
+var shiftHeld = false;
 
 function excludeValue(cell, value) {
 	if (cell.textContent != "") {
@@ -37,17 +39,6 @@ function setCell(cell, value) {
 	}
 
 	nothingChanged = false;
-}
-
-function stop() {
-	clearInterval(loopId);
-	loopId = null;
-
-	var enable = ["resetButton", "loadButton", "nextButton", "autoButton"];
-	for (var i = 0; i < enable.length; i++) {
-		document.getElementById(enable[i]).disabled = false;
-	}
-	document.getElementById("stopButton").disabled = true;
 }
 
 // All the characters in str in an array
@@ -86,6 +77,56 @@ function arrayUnique(array) {
     }
 
     return a;
+}
+
+// UI functions
+function checkShiftDown(event) {
+	if (event.key == "Shift") {
+		shiftHeld = true;
+	}
+}
+
+function checkShiftUp(event) {
+	if (event.key == "Shift") {
+		shiftHeld = false;
+	}
+}
+
+function rapidSolveOver(element) {
+	if (shiftHeld) {
+		element.style.width = window.getComputedStyle(element).width;
+		element.innerHTML = "WARP SPEED!";
+	}
+}
+
+function rapidSolveOut(element) {
+	element.style.width = null;
+	element.innerHTML = "Rapid Auto Solve";
+}
+
+function rapidSolve() {
+	if (shiftHeld) {
+		solve(1, 1);
+	} else {
+		solve(100, 100);
+	}
+}
+
+function stop() {
+	if (next != null) {
+		clearTimeout(next);
+		next = null;
+	}
+	if (loopId != null) {
+		clearInterval(loopId);
+		loopId = null;
+	}
+
+	var enable = ["resetButton", "loadButton", "nextButton", "autoButton"];
+	for (var i = 0; i < enable.length; i++) {
+		document.getElementById(enable[i]).disabled = false;
+	}
+	document.getElementById("stopButton").disabled = true;
 }
 
 // Algorithm
@@ -172,9 +213,10 @@ function solve(stepDelay, levelDelay) {
 				stop();
 				
 				if (levelDelay != -1) {
-					setTimeout(function() {
+					document.getElementById("stopButton").disabled = false;
+					next = setTimeout(function() {
 						nextLevel();
-						solve();
+						solve(stepDelay, levelDelay);
 					}, levelDelay);
 				}
 			} else if (nothingChanged) {

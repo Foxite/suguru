@@ -16,7 +16,7 @@
 	<script type="text/javascript" src="themeswitch.js"></script>
 	<link id="theme" type="text/css" rel="stylesheet" href="suguru.light.css" />
 </head>
-<body onload="restoreTheme(); onLoad(); resetLevel();">
+<body onload="restoreTheme(); onLoad(); resetLevel();" onkeydown="checkShiftDown(event)" onkeyup="checkShiftUp(event)">
 <div id="container">
 	<table id="controls"><tbody>
 		<tr>
@@ -41,7 +41,7 @@
 		<tr><td style="display:flex;justify-content:space-between;">
 			<button type="button" id="autoButton" onclick="solve(500, -1)">Auto Solve Level</button>
 			<button type="button" id="autoAllButton" onclick="solve(500, 2000)">Auto Solve All</button>
-			<button type="button" id="rapidAutoButton" onclick="solve(100, 100)">Rapid Auto Solve</button>
+			<button type="button" id="rapidAutoButton" onclick="rapidSolve()" onmouseover="rapidSolveOver(this)" onmouseout="rapidSolveOut(this)">Rapid Auto Solve</button>
 			<button type="button" id="stopButton" onclick="stop()" disabled>Cancel Auto Solve</button>
 		</td><td>
 			<label><input type="radio" name="theme" value="dark" onchange="switchTheme(this)"> Dark</label>
