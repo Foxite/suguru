@@ -1,0 +1,56 @@
+body {
+	background-color: rgb(25, 25, 25);
+	color: rgba(255, 255, 255, 1)
+}
+
+table#suguru {
+	border-spacing: 0;
+	border: 2px solid rgba(255, 255, 255, 0.75);
+}
+
+table#suguru tr:first-of-type td {
+	border-top: none;
+}
+
+table#suguru tr:last-of-type td {
+	border-bottom: none;
+}
+
+table#suguru tr td:first-of-type {
+	border-left: none;
+}
+
+table#suguru tr td:last-of-type {
+	border-right: none;
+}
+
+table#suguru td {
+	font-size: 3em;
+	width: 75px;
+	height: 75px;
+	box-sizing: border-box;
+	border: 1px solid rgba(191, 191, 191, 0.75);
+	text-align: center;
+	border-style: outset;
+}
+
+table#suguru td.border-left {
+	border-left: 2px solid rgba(255, 255, 255, 0.9);
+}
+
+table#suguru td.border-top {
+	border-top: 2px solid rgba(255, 255, 255, 0.9);
+}
+
+table#suguru td.border-right {
+	border-right: 2px solid rgba(255, 255, 255, 0.9);
+}
+
+table#suguru td.border-bottom {
+	border-bottom: 2px solid rgba(255, 255, 255, 0.9);
+}
+
+.invalid {
+	outline: 3px dashed red;
+	outline-offset: -3px;
+}

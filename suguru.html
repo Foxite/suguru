@@ -12,27 +12,40 @@
 	<script type="text/javascript" src="common.js"></script>
 	<script type="text/javascript" src="suguru.js"></script>
 	<script type="text/javascript" src="algorithm.js"></script>
-	<link rel="stylesheet" href="suguru.css" />
+	<script type="text/javascript" src="cookies.js"></script>
+	<script type="text/javascript" src="themeswitch.js"></script>
+	<link id="theme" type="text/css" rel="stylesheet" href="suguru.light.css" />
 </head>
-<body onload="onLoad(); resetLevel();">
+<body onload="restoreTheme(); onLoad(); resetLevel();">
 <div id="container">
-	<form id="generateForm" onsubmit="loadLevelUI(); return false;">
-		<label>Difficulty: <select id="difficulty">
-			<option value="1">Beginner</option>
-			<option value="2">Easy</option>
-			<option value="3">Medium</option>
-			<option value="4">Hard</option>
-			<option value="5">Very hard</option>
-			<option value="6">Bruh</option>
-		</select></label>
-		<label>Level: <input type="number" id="levelNumber" min="1" max="1000" style="width: 5em" value="1"></label>
-		<button type="submit" id="loadButton">Load Level</button><br>
-	</form>
-	<button type="button" id="resetButton" onclick="resetLevel()">Reset</button>
-	<button type="button" id="nextButton" onclick="nextLevel()">Next Level</button>
-	<button type="button" id="autoButton" onclick="solve()">Auto solve</button>
-	<button type="button" id="stopButton" onclick="stop()" disabled>Cancel auto solve</button>
-	<div id="wintext" style="visibility:hidden;">Puzzle solved!</div>
+	<table id="controls"><tbody>
+		<tr>
+			<td style="display:flex;justify-content:space-between;">
+				<form id="generateForm" onsubmit="loadLevelUI(); return false;">
+					<label>Difficulty: <select id="difficulty">
+						<option value="1">Beginner</option>
+						<option value="2">Easy</option>
+						<option value="3">Medium</option>
+						<option value="4">Hard</option>
+						<option value="5">Very hard</option>
+						<option value="6">Bruh</option>
+					</select></label>
+					<label>Level: <input type="number" id="levelNumber" min="1" max="1000" style="width: 5em" value="1"></label>
+					<button type="submit" id="loadButton">Load Level</button>
+				</form>
+			</td>
+			<td><label><input type="radio" name="theme" value="light" onchange="switchTheme(this)" selected> Light</label></td>
+		</tr>
+		<tr><td style="display:flex;justify-content:space-between;">
+			<button type="button" id="resetButton" onclick="resetLevel()">Reset</button>
+			<button type="button" id="nextButton" onclick="nextLevel()">Next Level</button>
+			<button type="button" id="autoButton" onclick="solve()">Auto solve</button>
+			<button type="button" id="stopButton" onclick="stop()" disabled>Cancel auto solve</button>
+		</td><td>
+			<label><input type="radio" name="theme" value="dark" onchange="switchTheme(this)"> Dark</label>
+		</td></tr>
+		<tr><td><div id="wintext" style="visibility:hidden;">Puzzle solved!</div></td></tr>
+	</tbody></table>
 	<p></p>
 	<table id="suguru"></table>
 </div>
