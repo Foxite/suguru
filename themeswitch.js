@@ -1,6 +1,6 @@
-function switchTheme(event) {
-	loadTheme(event.value);
-	docCookies.setItem("theme", event.value);
+function switchTheme(element) {
+	loadTheme(element.value);
+	docCookies.setItem("theme", element.value);
 }
 
 function restoreTheme() {
