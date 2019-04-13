@@ -170,10 +170,10 @@ function solve() {
 			if (solved) {
 				console.log("Auto solve complete");
 				stop();
-				setTimeout(function() {
+				/*setTimeout(function() {
 					nextLevel();
 					solve();
-				}, 2000);
+				}, 2000);*/
 			}
 		} catch (e) {
 			console.log("Error occured, stopping loop");
