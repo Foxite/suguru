@@ -5,6 +5,9 @@ function switchTheme(element) {
 
 function restoreTheme() {
 	var theme = docCookies.getItem("theme");
+	if (theme == null) {
+		theme = "light";
+	}
 	loadTheme(theme);
 	setCheckedValue(document.getElementsByName("theme"), theme);
 }
